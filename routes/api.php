@@ -184,6 +184,7 @@ Route::prefix('v1')->group(function () {
         Route::controller(App\Http\Controllers\Api\V1\NonLelController::class)->group(function(){
             Route::get('InisiasiLelang/{pkt_id}','initiate_lelang')->middleware('jwt.verify');
             Route::get('lelang/{user_id}','list_lelangKIPBJ');
+            Route::get('dokumen/{lls_id}','get_dokumen');
         });
         Route::controller(\App\Http\Controllers\Api\V1\EvaluasiController::class)->group(function(){
             Route::get('detail_lelang/{lls_id}','get_lelang');
@@ -264,9 +265,24 @@ Route::prefix('v1')->group(function () {
         });
         Route::controller(App\Http\Controllers\Api\V1\NonLelController::class)->group(function(){
             Route::get('lelang/{user_id}','list_lelangPPK');
+            Route::get('dokumen/{lls_id}','get_dokumen');
         });
         Route::controller(\App\Http\Controllers\Api\V1\EvaluasiController::class)->group(function(){
             Route::get('detail_lelang/{lls_id}','get_lelang');
+        });
+        Route::controller(\App\Http\Controllers\Api\V1\EkontrakController::class)->group(function(){
+            Route::get('base_kontrak/{lls_id}','ekontrak');
+            Route::get('init_sppbj/{lls_id}','init_sppbj');
+            Route::post('create_sppbj/{lls_id}','insert_sppbj')->middleware('jwt.verify');
+            Route::get('sppbj/{sppbj_id}','get_sppbj');
+            Route::get('print_sppbj/{sppbj_id}','cetak_sppbj');
+            Route::put('sppbj/{sppbj_id}','update_sppbj')->middleware('jwt.verify');
+            Route::get('kontrak/{kontrak_id}','get_kontrak');
+            Route::get('print_kontrak/{kontrak_id}','cetak_kontrak');
+            Route::put('kontrak/{kontrak_id}','update_kontrak')->middleware('jwt.verify');
+            Route::get('spk/{spk_id}','get_spk');
+            Route::get('print_spk/{spk_id}','cetak_spk');
+            Route::put('spk/{spk_id}','update_spk')->middleware('jwt.verify');
         });
     });
 

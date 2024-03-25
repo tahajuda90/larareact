@@ -87,12 +87,12 @@ class VerifController extends Controller
         if(isset($lls_id)){
             $ins = false;
             if (count($data) > 0) {
-                $data = $this->bulk_creator($tabel, 'vid_ius', $lls_id, $data);
+                $data = $this->bulk_creator($tabel, 'verif_ius', $lls_id, $data);
                 $ins = DB::table($tabel)->insert($data);
             }
             return (object) ['success'=>$ins,'data'=>$data];
         }
-        $data['vid_ius'] = $this->generateID($tabel, 'vid_ius');
+        $data['verif_ius'] = $this->generateID($tabel, 'vid_ius');
         $ins = DB::table($tabel)->updateOrInsert($this->baseData($data));
         return (object) ['success'=>$ins,'data'=>$data];        
     }
@@ -102,12 +102,12 @@ class VerifController extends Controller
         if (isset($lls_id)) {
             $ins = false;
             if (count($data) > 0) {
-                $data = $this->bulk_creator($tabel, 'ver_lhkp_id', $lls_id, $data);
+                $data = $this->bulk_creator($tabel, 'verif_lhkp', $lls_id, $data);
                 $ins = DB::table($tabel)->insert($data);
             }
             return (object) ['success' => $ins, 'data' => $data];
         }
-        $data['ver_lhkp_id'] = $this->generateID($tabel, 'ver_lhkp_id');
+        $data['verif_lhkp'] = $this->generateID($tabel, 'verif_lhkp');
         $ins = DB::table($tabel)->updateOrInsert($this->baseData($data));
         return (object) ['success'=>$ins,'data'=>$data];        
     }

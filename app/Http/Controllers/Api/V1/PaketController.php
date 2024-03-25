@@ -42,7 +42,7 @@ class PaketController extends Controller
             $anggaran = $this->ang->create(['rup_id' => $rupdta->rup_id, 'sbd_id' => $rupdta->sbd_id, 'ang_koderekening' => $rupdta->angg_rekening,
                 'ang_nilai' => $rupdta->angg_nilai, 'ang_uraian' => $rupdta->uraian, 'ang_tahun' => $rupdta->angg_thn, 'ang_nama' => $rupdta->pkt_nama,'lokasi'=>$rupdta->lokasi]);
 //        print_r($anggaran->ang_id);
-            $paket = $this->create_paket(['pkt_nama' => $rupdta->pkt_nama, 'pkt_pagu' => $rupdta->angg_nilai, 'pkt_status' => 0,'ppk_id'=>$this->user['user_id']]);
+            $paket = $this->create_paket(['pkt_nama' => $rupdta->pkt_nama, 'pkt_pagu' => $rupdta->angg_nilai, 'pkt_status' => 0,'ppk_id'=>$this->user['user_id'],'audituser'=>(isset($this->user))?$this->user['user']:'ADMIN']);
             $this->dok->createDok(['pkt_id' => $paket->pkt_id, 'dp_versi' => 1]);
             $this->create_paketangg(['pkt_id' => $paket->pkt_id, 'ang_id' => $anggaran->ang_id]);
             $this->create_paketlokasi(['prop' => $anggaran->lokasi['propinsi'], 'kota' => $anggaran->lokasi['kota'], 'pkt_lokasi' => $anggaran->lokasi['lokasi'], 'pkt_id' => $paket->pkt_id]);

@@ -111,6 +111,7 @@
                 @yield('main')
             <footer>
                 <img src="{{asset('image003.png')}}" alt="footer" />
+                <p style="text-align: right; font-size: 7pt ">Generate : {{Carbon\Carbon::now()}}</p>
             </footer>
         </div>
     </body>

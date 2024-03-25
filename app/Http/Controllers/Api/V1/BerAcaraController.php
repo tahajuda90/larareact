@@ -56,4 +56,5 @@ class BerAcaraController extends Controller
     protected function get_eval($lls_id,$eva_jns){
         return Evaluasi::where(['eva_jenis'=>$eva_jns,'lls_id'=>$lls_id])->leftJoin('nilai_evaluasi','evaluasi.eva_id','=','nilai_evaluasi.eva_id')->select('evaluasi.eva_status','nilai_evaluasi.nev_lulus','nilai_evaluasi.nev_urutan','nilai_evaluasi.nev_harga_terkoreksi','nilai_evaluasi.nev_harga','nilai_evaluasi.nev_harga_negosiasi')->first();
     }
+    
 }

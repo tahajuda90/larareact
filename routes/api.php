@@ -284,6 +284,10 @@ Route::prefix('v1')->group(function () {
             Route::get('print_spk/{spk_id}','cetak_spk');
             Route::put('spk/{spk_id}','update_spk')->middleware('jwt.verify');
         });
+        Route::controller(App\Http\Controllers\Api\V1\PenilaianController::class)->group(function(){
+            Route::get('nilai/{lls_id}','penilaian');
+            Route::get('detail_nilai/{lls_id}/{ktr_id}','detail_penilaian');
+        });
     });
 
     Route::prefix('PP')->group(function () {

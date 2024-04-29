@@ -287,6 +287,7 @@ Route::prefix('v1')->group(function () {
         Route::controller(App\Http\Controllers\Api\V1\PenilaianController::class)->group(function(){
             Route::get('nilai/{lls_id}','penilaian');
             Route::get('detail_nilai/{lls_id}/{ktr_id}','detail_penilaian');
+            Route::put('penilaian','ins_penilaian')->middleware('jwt.verify');
         });
     });
 

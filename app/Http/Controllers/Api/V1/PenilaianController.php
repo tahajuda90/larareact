@@ -36,7 +36,12 @@ class PenilaianController extends Controller
     }
     
     public function ins_penilaian(Request $req){
-        
+        $ins = $req->nilai;
+        $ind = $this->get_kategori(['ktr_id'=>$ins['ktr_id']])->first();
+        $jwb = $this->get_kategori(['ktr_id'=>$ins['ref_id']])->first();
+        $ins['base_nilai'] = $jwb->ktr_nilai; $ins['base_bobot'] = $ind->ktr_nilai; $ins['nilai'] = ($ind->ktr_nilai/100)*$jwb->ktr_nilai;
+        $data['nilai'] = $this->insert_nilai($ins);
+        return response()->json(['success'=>true,'data'=>$data],201);
     }
     
     protected function option_kategori($ktr_id){
@@ -48,7 +53,7 @@ class PenilaianController extends Controller
         $nilai = $this->get_nilai(['lls_id'=>$lls_id]);
         return $this->get_kategori(['kategori_master.ktr_jenis'=>1])->leftJoinSub($nilai, 'nilai', function(\Illuminate\Database\Query\JoinClause $join){
             $join->on('kategori_master.ktr_id','=','nilai.ktr_id');
-        })->select('kategori_master.*','nilai.base_nilai','nilai.base_bobot','nilai.nilai')->get();
+        })->select('kategori_master.*','nilai.base_nilai',DB::raw('kategori_master.ktr_nilai as base_bobot'),'nilai.nilai')->get();
     }
     
     protected function nilai_total($lls_id){
@@ -63,6 +68,12 @@ class PenilaianController extends Controller
     protected function get_nilai($data){
         $tabel = 'penilaian_kinerja';
         return DB::table($tabel)->where($data);  
+    }
+    
+    protected function insert_nilai($data){
+        $data['pnl_id'] = $this->generateID('penilaian_kinerja', 'pnl_id');
+        DB::table('penilaian_kinerja')->updateOrInsert(['lls_id'=>$data['lls_id'],'ktr_id'=>$data['ktr_id']], $this->baseData($data));
+        return $data;
     }
     
     private function baseData($data){

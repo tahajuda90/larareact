@@ -233,6 +233,7 @@ class PaketController extends Controller
             $list = $pkt->orWhere('paket.pkt_nama','LIKE',"%{$q}%");
             ($req->length) ? $path.='&q='.$q : $path.='?q='.$q ;
         }
+        $pkt->orderBy('pkt_tgl_buat', 'desc');
         $list = $pkt->paginate($l);
         $list->withPath(url($path));
         return response()->json(['success' => true,'total' => $total,'data' => $list], 201);

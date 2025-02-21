@@ -175,50 +175,50 @@
                             <div>
                                 <p style="line-height: 1.5">Pejabat Pembuat Komitmen (PPK)</p>
                                 <p style="line-height: 1.5">RSUD Gambiran Kota Kediri</p>
+                                @if(isset($ppk))
                                 <div style=" margin-top: 50%" >
                                     <p style="font-weight: bold; text-decoration: underline">
-                                        YUDI SANTOSA, STP, MM
+                                        {{$ppk->peg_nama}}
                                     </p>
-                                    <p>NIP. 19761215 200112 1 003</p>
+                                    <p>NIP. {{$ppk->peg_nip}}</p>
                                 </div>
+                                @endif
                             </div>
                         </td>
+                        @if(isset($pp))
                         <td style="text-align: center">
                             <div>
-                                <p style="line-height: 1.5">Pokja Pemilihan</p>
+                                <p style="line-height: 1.5">Pejabat Pengadaan</p>
                                 <p style="line-height: 1.5">RSUD Gambiran Kota Kediri</p>
-                                <div style="display: flex; ">
-                                    <p>1.</p>
-                                    <div style="text-align: left; ">
-                                        <p style="font-weight: bold; text-decoration: underline">
-                                            Okky Saktiyawan,S.E.,M.Si
-                                        </p>
-                                        <p>NIP. 19831028 200901 1 006</p>
-                                    </div>
-                                    <p>1. ………..…</p>
-                                </div>
-                                <div style="display: flex; ">
-                                    <p>2.</p>
-                                    <div style="text-align: left; ">
-                                        <p style="font-weight: bold; text-decoration: underline">
-                                            Maqbul Dian Muhammad S.T.
-                                        </p>
-                                        <p>NIP. 19780908 2001001 1 001</p>
-                                    </div>
-                                    <p>2. ………..…</p>
-                                </div>
-                                <div style="display: flex; ">
-                                    <p>3.</p>
-                                    <div style="text-align: left;">
-                                        <p style="font-weight: bold; text-decoration: underline">
-                                            Endik Joko Noritanto, A.Md.PK
-                                        </p>
-                                        <p>NIP. 19790720 201101 1 007</p>
-                                    </div>
-                                    <p>3. ………..…</p>
+                                <div style=" margin-top: 60%" >
+                                    <p style="font-weight: bold; text-decoration: underline">
+                                        {{$pp->peg_nama}}
+                                    </p>
+                                    <p>NIP. {{$pp->peg_nip}}</p>
                                 </div>
                             </div>
                         </td>
+                        @endif
+                        @if(isset($pokja))
+                        <td style="text-align: center">
+                                                    <div>
+                                <p style="line-height: 1.5">Pokja Pemilihan</p>
+                                <p style="line-height: 1.5">RSUD Gambiran Kota Kediri</p>
+                                @foreach($pokja as $pkj)
+                                <div style="display: flex; ">
+                                    <p>{{$loop->iteration}}.</p>
+                                    <div style="text-align: left; ">
+                                        <p style="font-weight: bold; text-decoration: underline">
+                                            {{$pkj->pegawai->peg_nama}}
+                                        </p>
+                                        <p>{{$pkj->pegawai->peg_nip}}</p>
+                                    </div>
+                                    <p>{{$loop->iteration}}. ………..…</p>
+                                </div>
+                                @endforeach
+                            </div>
+                        </td>
+                        @endif
                     </tr>
                 </table>
             </main>

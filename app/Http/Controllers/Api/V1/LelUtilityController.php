@@ -14,6 +14,7 @@ use App\Models\DokNonLel;
 use App\Models\DokNonLelContent;
 use App\Models\Rekanan;
 use App\Models\Peserta;
+use Illuminate\Support\Facades\Http;
 
 class LelUtilityController extends Controller {
 
@@ -272,14 +273,25 @@ class LelUtilityController extends Controller {
         return DB::table('checklist_master');
     }
     
+    public function coba_blacklist(Request $req){
+        $npwp = $req->npwp;
+        $response = Http::withHeaders([
+            'User-Agent' => 'Mozilla/5.0 (Linux; Android 12; Pixel 6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.58 Mobile Safari/537.36'
+            ])->get("https://inaproc.id/api/blacklist/check/npwp?arg=".$npwp);
+        dd($response->json());
+    }
+    
     protected function blacklist_checker($npwp){
-        $ch = curl_init(); 
+//        $ch = curl_init(); 
         $url = "https://inaproc.id/api/blacklist/check/npwp?arg=".$npwp;
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $output = curl_exec($ch);
-        curl_close($ch);
-        return ['url'=>$url,'result'=>json_decode($output)];
+//        curl_setopt($ch, CURLOPT_URL, $url);
+//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+//        $output = curl_exec($ch);
+//        curl_close($ch);
+        $response = Http::withHeaders([
+            'User-Agent' => 'Mozilla/5.0 (Linux; Android 12; Pixel 6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.58 Mobile Safari/537.36'
+            ])->get($url);
+        return ['url'=>$url,'result'=>(object)$response->json()];
     }
     
     private function generateID($table, $key) {

@@ -55,12 +55,115 @@
                         sebagaimana berikut:
                     </p>
                 </div>
-                <div style="margin-top: 0.2cm">
+                <div style="margin-top: 1cm">
                     <p style="line-height: 1.5; font-size: 11pt">
+                        A. Pembukaan Penawaran dari peserta yang mendaftar serta memasukkan dokumen penawaran, yaitu:
+                    </p>
+                </div>
+                
+                <table style="margin-left: 50px ;border-collapse: collapse; width:90%;">
+                    <tr>
+                        <th
+                            style="
+                            border: 1px solid #0e0e0e;
+                            text-align: center;
+                            padding: 8px;
+                            font-weight: normal;
+                            font-weight: bold;
+                            "
+                            >
+                            NO
+                        </th>
+                        <th
+                            style="
+                            border: 1px solid #0e0e0e;
+                            text-align: center;
+                            padding: 8px;
+                            font-weight: normal;
+                            font-weight: bold;
+                            "
+                            >
+                            Nama Penyedia
+                        </th>
+                        <th
+                            style="
+                            border: 1px solid #0e0e0e;
+                            text-align: center;
+                            padding: 8px;
+                            font-weight: normal;
+                            font-weight: bold;
+                            "
+                            >
+                            Alamat Penyedia
+                        </th>
+                        <th
+                            style="
+                            border: 1px solid #0e0e0e;
+                            text-align: center;
+                            padding: 8px;
+                            font-weight: normal;
+                            font-weight: bold;
+                            "
+                            >
+                            Nilai Penawaran
+                        </th>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <td
+                                style="
+                                border: 1px solid #0e0e0e;
+                                text-align: center;
+                                padding: 0 8px;
+                                vertical-align: top;
+                                "
+                                >
+                                1
+                            </td>
+                            <td
+                                style="
+                                border: 1px solid #0e0e0e;
+                                text-align: center;
+                                padding: 0 8px;
+                                vertical-align: top;
+                                "
+                                >
+                                {{$peserta->rkn_nama}}
+                            </td>
+                            <td
+                                style="
+                                border: 1px solid #0e0e0e;
+                                text-align: center;
+                                padding: 0 8px;
+                                vertical-align: top;
+                                "
+                                >
+                                {{$peserta->rkn_alamat}}
+                            </td>
+                            <td
+                                style="
+                                border: 1px solid #0e0e0e;
+                                text-align: center;
+                                padding: 0 8px;
+                                vertical-align: top;
+                                "
+                                >
+                                {{number_format($peserta->psr_harga, 0, ',', '.')}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="margin-top: 1cm">
+                    <p style="line-height: 1.5; font-size: 11pt">
+                        B. Evaluasi Penawaran
+                    </p>
+                </div>
+                <div style="margin-top: 0.2cm">
+                    <p style="text-indent: 25px; line-height: 1.5; font-size: 11pt">
                         1. Evaluasi Administrasi
                     </p>
                 </div>
-                <table style="border-collapse: collapse; width:100%;">
+                <table style="margin-left: 50px ; border-collapse: collapse; width:90%;">
                     <tr>
                         <th
                             style="
@@ -161,11 +264,11 @@
                     </tbody>
                 </table>
                 <div style="margin-top: 0.2cm">
-                    <p style="line-height: 1.5; font-size: 11pt">
+                    <p style="text-indent: 25px; line-height: 1.5; font-size: 11pt">
                         2. Evaluasi Teknis
                     </p>
                 </div>
-                <table style="border-collapse: collapse; width:100%;">
+                <table style="margin-left: 50px ;border-collapse: collapse; width:90%;">
                     <tr>
                         <th
                             style="
@@ -266,11 +369,11 @@
                     </tbody>
                 </table>
                 <div style="margin-top: 0.2cm">
-                    <p style="line-height: 1.5; font-size: 11pt">
+                    <p style="text-indent: 25px; line-height: 1.5; font-size: 11pt">
                         3. Evaluasi Harga
                     </p>
                 </div>
-                <table style="border-collapse: collapse; width:100%;">
+                <table style="margin-left: 50px ; border-collapse: collapse; width:90%;">
                     <tr>
                         <th
                             style="
@@ -410,50 +513,50 @@
                             <div>
                                 <p style="line-height: 1.5">Pejabat Pembuat Komitmen (PPK)</p>
                                 <p style="line-height: 1.5">RSUD Gambiran Kota Kediri</p>
+                                @if(isset($ppk))
                                 <div style=" margin-top: 50%" >
                                     <p style="font-weight: bold; text-decoration: underline">
-                                        YUDI SANTOSA, STP, MM
+                                        {{$ppk->peg_nama}}
                                     </p>
-                                    <p>NIP. 19761215 200112 1 003</p>
+                                    <p>NIP. {{$ppk->peg_nip}}</p>
                                 </div>
+                                @endif
                             </div>
-                        </td>
+                        </td>                        
+                        @if(isset($pp))
                         <td style="text-align: center">
                             <div>
-                                <p style="line-height: 1.5">Pokja Pemilihan</p>
+                                <p style="line-height: 1.5">Pejabat Pengadaan</p>
                                 <p style="line-height: 1.5">RSUD Gambiran Kota Kediri</p>
-                                <div style="display: flex; ">
-                                    <p>1.</p>
-                                    <div style="text-align: left; ">
-                                        <p style="font-weight: bold; text-decoration: underline">
-                                            Okky Saktiyawan,S.E.,M.Si
-                                        </p>
-                                        <p>NIP. 19831028 200901 1 006</p>
-                                    </div>
-                                    <p>1. ………..…</p>
-                                </div>
-                                <div style="display: flex; ">
-                                    <p>2.</p>
-                                    <div style="text-align: left; ">
-                                        <p style="font-weight: bold; text-decoration: underline">
-                                            Maqbul Dian Muhammad S.T.
-                                        </p>
-                                        <p>NIP. 19780908 2001001 1 001</p>
-                                    </div>
-                                    <p>2. ………..…</p>
-                                </div>
-                                <div style="display: flex; ">
-                                    <p>3.</p>
-                                    <div style="text-align: left;">
-                                        <p style="font-weight: bold; text-decoration: underline">
-                                            Endik Joko Noritanto, A.Md.PK
-                                        </p>
-                                        <p>NIP. 19790720 201101 1 007</p>
-                                    </div>
-                                    <p>3. ………..…</p>
+                                <div style=" margin-top: 60%" >
+                                    <p style="font-weight: bold; text-decoration: underline">
+                                        {{$pp->peg_nama}}
+                                    </p>
+                                    <p>NIP. {{$pp->peg_nip}}</p>
                                 </div>
                             </div>
                         </td>
+                        @endif
+                        @if(isset($pokja))
+                        <td style="text-align: center">
+                                                    <div>
+                                <p style="line-height: 1.5">Pokja Pemilihan</p>
+                                <p style="line-height: 1.5">RSUD Gambiran Kota Kediri</p>
+                                @foreach($pokja as $pkj)
+                                <div style="display: flex; ">
+                                    <p>{{$loop->iteration}}.</p>
+                                    <div style="text-align: left; ">
+                                        <p style="font-weight: bold; text-decoration: underline">
+                                            {{$pkj->pegawai->peg_nama}}
+                                        </p>
+                                        <p>{{$pkj->pegawai->peg_nip}}</p>
+                                    </div>
+                                    <p>{{$loop->iteration}}. ………..…</p>
+                                </div>
+                                @endforeach
+                            </div>
+                        </td>
+                        @endif
                     </tr>
                 </table>
             </main>
